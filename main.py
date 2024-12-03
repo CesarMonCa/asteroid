@@ -1,9 +1,10 @@
+import sys
 import pygame
-from constants import *  # Ensure constants like SCREEN_WIDTH, SCREEN_HEIGHT are defined here
-from player import Player  # Ensure the Player class is defined in player.py
-from asteroid import Asteroid  # Ensure the Asteroid class is defined in asteroid.py
-from asteroidfield import AsteroidField  # Ensure asteroidfield.py is accessible and correctly implemented
-
+from constants import *  
+from player import Player 
+from asteroid import Asteroid  
+from asteroidfield import AsteroidField  
+import circleshape
 
 def main():
     # Initialize Pygame
@@ -19,7 +20,7 @@ def main():
     # Assign sprite groups to classes
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = updatable
-    asteroid_field = AsteroidField()  # Ensure this works after adjustments in asteroidfield.py
+    asteroid_field = AsteroidField()  
 
     Player.containers = (updatable, drawable)
 
@@ -38,6 +39,11 @@ def main():
         # Update all updatable objects
         for obj in updatable:
             obj.update(dt)
+
+        for i in asteroids:
+            if i.collision(player):
+                print("Game Over")
+                sys.exit()
 
         # Clear the screen
         screen.fill("black")
