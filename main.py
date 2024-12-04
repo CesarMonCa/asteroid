@@ -5,6 +5,7 @@ from player import Player
 from asteroid import Asteroid  
 from asteroidfield import AsteroidField  
 import circleshape
+from shot import Shot
 
 def main():
     # Initialize Pygame
@@ -22,6 +23,9 @@ def main():
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = updatable
     asteroid_field = AsteroidField()  
+
+    Asteroid.containers = (asteroids, updatable, drawable)
+    Shot.containers = (shots, updatable, drawable)
 
     Player.containers = (updatable, drawable)
 
